@@ -96,9 +96,24 @@ def part2(input_vals):
 
     return output
 
-def optimized(input_vals):
-    output = None
-    pass
+def optimized(input_vals, num_max=1):
+    top_elfs = []
+    top_cals = []
+    elf_cal = []
+
+    for elf, elf_food in enumerate(input_vals):
+        elf_cal.append(sum(elf_food))
+
+    for i in range(num_max):
+        max_vals = find_max(elf_cal)[1]
+
+        top_elds.append(max_vals[0])
+        top_cals.append(max_vals[1])
+
+        elf_cal.remove(elf_cal[1])
+
+    output = sum(top_cals)
+    
     return output
 
 if __name__=="__main__": 

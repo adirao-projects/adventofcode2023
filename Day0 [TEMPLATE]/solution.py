@@ -1,3 +1,10 @@
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-p", "--Part", type=int, help = "Which Part", default=0)
+parser.add_argument("-t", "--Test", action="store_true", help = "Uses test inputs")
+args = parser.parse_args()
+
 import numpy as np
 from itertools import combinations 
 
@@ -43,28 +50,27 @@ def inputProcess(f):
 
 
 def part1(input_vals):
-	output = None
     pass
-    return output
 
 def part2(input_vals):
-	output = None
     pass
-    return output
 
 def optimized(input_vals):
-    output = None
     pass
-    return output
 
 if __name__=="__main__": 
-    f = openFile(True)    
+    f = openFile(args.Test)  
+
     input_vals = inputProcess(f)
     
-    output = None
-    #output = part1(input_vals)
-    #output = part2(input_vals) 
-  	#output = optimized(input_vals)
+    if args.Part == 1:
+        output = part1(input_vals)
+
+    elif args.Part == 2:
+        output = part2(input_vals)
+    
+    elif args.Part == 0:
+  	     output = optimized(input_vals)
     
     print(output)
  

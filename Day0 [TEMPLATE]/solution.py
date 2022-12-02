@@ -1,4 +1,10 @@
 import argparse
+import sys
+
+sys.path.append('../')
+
+#import SortingAlgorithms
+#import ComplexDataStructures
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--Part", type=int, help = "Which Part", default=0)
@@ -50,13 +56,13 @@ def inputProcess(f):
 
 
 def part1(input_vals):
-    pass
+    raise NotImplementedError
 
 def part2(input_vals):
-    pass
+	raise NotImplementedError    
 
 def optimized(input_vals):
-    pass
+	raise NotImplementedError
 
 if __name__=="__main__": 
     f = openFile(args.Test)  

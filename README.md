@@ -32,6 +32,8 @@ Next work on `part1` and subsequently `part2`, and then - if you care to - you c
 
 ---
 
-## Day 1
+## [Day 1](https://adventofcode.com/2022/day/1)
+---
 
+## [Day 2](https://adventofcode.com/2022/day/2)
 ---

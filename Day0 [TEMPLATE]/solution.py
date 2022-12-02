@@ -3,7 +3,7 @@ import sys
 
 sys.path.append('../')
 
-#import SortingAlgorithms
+#import Algorithms
 #import ComplexDataStructures
 
 parser = argparse.ArgumentParser()

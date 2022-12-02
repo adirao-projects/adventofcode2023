@@ -20,8 +20,6 @@ parser.add_argument("-p", "--Part", type=int, help = "Which Part",
 parser.add_argument("-t", "--Test", action="store_true", 
                     help = "Uses test inputs")
 args = parser.parse_args()
-
-
 ```
 
 Depending on which part of the question you're doing (Part 1 or 2) pass the desired number. If you want to run your test inputs from the `test_inputs.txt` pass the `-t` arguement. 
@@ -29,6 +27,12 @@ Depending on which part of the question you're doing (Part 1 or 2) pass the desi
 You ideally want to write in the `inputProcess` file first to parse your inputs, some starter functions have been included (more may be added later depending on how much utility they add).
 
 Next work on `part1` and subsequently `part2`, and then - if you care to - you can optimize your solution after (assuming you were just hacking together something as fast as possible). 
+
+For example, the following would run day 1 part 1 in test mode:
+```
+cd Day1
+python solution.py -t -p 1
+```
 
 ---
 

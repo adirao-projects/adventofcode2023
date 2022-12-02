@@ -1,13 +1,16 @@
 # [Advent of Code 2022](https://adventofcode.com/2022/)
+
 ---
 
-## Preliminary
+## Forward
 
 Hi there, my name is Adi. I like doing the Advent of Code every year and this year I want to document my progress and thoughts on each problem here on this git repo!
 
 ----
 
 ## How to use my starter code
+
+### Running Files
 
 In the file you'll find a python file called `new_day.py` this creates a copy of the Day template file onto your computer to prep you for the next day of the calendar (useful when you're racing to get one of the first 200 stars). To run the code, argparser has been added to run everything directly from the commandline
 
@@ -29,15 +32,26 @@ You ideally want to write in the `inputProcess` file first to parse your inputs,
 Next work on `part1` and subsequently `part2`, and then - if you care to - you can optimize your solution after (assuming you were just hacking together something as fast as possible). 
 
 For example, the following would run day 1 part 1 in test mode:
+
 ```
 cd Day1
 python solution.py -t -p 1
 ```
 
+### Helper Files
+
+There are also a few helper files included with the starter code. This includes useful algorithms and datastructures that you might need (but might not have the time to write from scratch). If you need to change anything, it is advised that you overload the class in order to preserve the classes for later use on other days. All the files should be fully type annotated with information about any algorithms.
+
+#### Algorithms
+
+#### DataStructures
+
 ---
 
 ## [Day 1](https://adventofcode.com/2022/day/1)
+
 ---
 
 ## [Day 2](https://adventofcode.com/2022/day/2)
+
 ---

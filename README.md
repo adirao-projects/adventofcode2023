@@ -33,7 +33,7 @@ Next work on `part1` and subsequently `part2`, and then - if you care to - you c
 
 For example, the following would run day 1 part 1 in test mode:
 
-```
+```bash
 cd Day1
 python solution.py -t -p 1
 ```

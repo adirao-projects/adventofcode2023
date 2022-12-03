@@ -1,11 +1,12 @@
 from __future__ import annotations
 from typing import Any, Dict, Tuple, List, Set, Optional, TextIO
 
+import math
 # Descriptions taken from https://codeofgeeks.com/important-algorithms-for-competitive-programming
 # Eventually will look at these https://www.geeksforgeeks.org/top-algorithms-and-data-structures-for-competitive-programming/
 
 
-def binary_search(lst: List[Any]) -> Any:
+def binary_search(lst: List[Any], low=0, high=len(lst), query: float) -> int:
 	"""
 		Parameters
 	    ----------
@@ -15,7 +16,7 @@ def binary_search(lst: List[Any]) -> Any:
 
 	    Returns
 	    -------
-	    Todo: Implement
+	    return : boolean
 	
 		Description
 		-----------
@@ -27,7 +28,20 @@ def binary_search(lst: List[Any]) -> Any:
 			O(log n)(base 2)
 	"""
 
-	raise NotImplementedError
+	if high>=low:
+		mid = (high+low)//2
+
+		if lst[mid]==query:
+			return mid
+
+		elif lst[mid]>query:
+			return binary_search(lst, low, mid-1, query)
+
+		elif lst[mid]<query:
+			return binary_search(lst, mid+1, high, query)
+
+	else:
+		return -1 #item not found
 
 
 def ternary_search(lst: List[Any]) -> List[Any]:
@@ -138,3 +152,6 @@ def kmp(word: str, text: str) -> str:
 	"""
 
 	raise NotImplementedError
+
+if __name__ == "__main__":
+	print("Hi")

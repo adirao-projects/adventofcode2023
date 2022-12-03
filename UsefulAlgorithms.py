@@ -101,6 +101,9 @@ def quick_sort(lst: List[Any]) -> List[Any]:
 			O(n^2) // Worst case
 	"""
 
+	pivot = lst[0]
+	pivot_index = 0
+
 	raise NotImplementedError
 
 
@@ -118,7 +121,22 @@ def merge_sort(lst: List[Any]) -> List[Any]:
 			O(nlog n)
 	"""
 
-	raise NotImplementedError
+	if len(lst) == 2:
+		if lst[0]>lst[1]:
+			temp = lst[1]
+			lst[1] = lst[0]
+			lst[0] = temp
+
+		return lst
+
+	else:
+		lst1 = lst[:mid]
+		lst2 = lst[mid:]
+
+		lst1 =  merge_sort(lst1)
+		lst2 = merge_sort(lst2)
+
+		return lst1 + lst2
 
 
 def rabin_karp(pattern: str, text: str) -> str:

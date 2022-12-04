@@ -6,7 +6,7 @@ import math
 # Eventually will look at these https://www.geeksforgeeks.org/top-algorithms-and-data-structures-for-competitive-programming/
 
 
-def binary_search(lst: List[Any], low=0, high=len(lst), query: float) -> int:
+def binary_search(lst: List[Any], low, high, query: float) -> int:
 	"""
 		Parameters
 	    ----------
@@ -121,20 +121,40 @@ def merge_sort(lst: List[Any]) -> List[Any]:
 			O(nlog n)
 	"""
 
-	if len(lst) == 2:
-		if lst[0]>lst[1]:
+	if len(lst) <= 2:
+		if len(lst)==1:
+			return lst
+
+		elif lst[0]>lst[1]:
 			temp = lst[1]
 			lst[1] = lst[0]
 			lst[0] = temp
+			return lst
 
 		return lst
 
 	else:
+		mid = len(lst) // 2
 		lst1 = lst[:mid]
+		print("======")
+		print("[][][]")
+		print(lst1)
 		lst2 = lst[mid:]
+		print(lst2)
+		print("=====")
 
 		lst1 =  merge_sort(lst1)
 		lst2 = merge_sort(lst2)
+
+		print(lst1)
+		lst2 = merge_sort(lst2)
+		print(lst2)
+		print("------")
+
+		if lst1[-1]>lst2[0]  	:
+			return lst1 + lst2
+		else:
+			return lst2 + lst1
 
 		return lst1 + lst2
 
@@ -172,4 +192,6 @@ def kmp(word: str, text: str) -> str:
 	raise NotImplementedError
 
 if __name__ == "__main__":
-	print("Hi")
+	lst = [7, 23, 55, -25, -2, 0, -73]
+
+	print(merge_sort(lst))

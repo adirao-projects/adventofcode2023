@@ -4,7 +4,13 @@
 
 ## Forward
 
-Hi there, my name is Adi. I like doing the Advent of Code every year and this year I want to document my progress and thoughts on each problem here on this git repo!
+Hi there, my name is Adi. I like doing the Advent of Code every year and this year I want to document my progress and thoughts on each problem here on this git repo. I'm [@adiraowastaken on Twitter](https://twitter.com/adiraowastaken) and I should be posting there to. Edits are welcome (especially to the starter files), just create a pull request before you do anything.
+
+
+
+**IMPORTANT, there are solutions that are posted here so don't spoil yourself!**
+
+
 
 ----
 
@@ -44,14 +50,99 @@ There are also a few helper files included with the starter code. This includes 
 
 #### Algorithms
 
+The algorithms file `UsefulAlgorithms.py` included may not all be implemented (are being updated everyday). There are quite a few (add a pull request if you want to add another). Here are the ones I've added so far:
+
+- [x] Binary Search
+
+- [ ] Tenary Search
+
+- [ ] Quick Sort
+
+- [x] Merge Sort
+
+- [ ] Rabin-Karp
+
+- [ ] KMP
+
+Many of the algorithms are being referenced from [here](https://codeofgeeks.com/important-algorithms-for-competitive-programming) and some of the starter code is taken and or referenced from [geeksforgeeks](https://www.geeksforgeeks.org/top-algorithms-and-data-structures-for-competitive-programming/). I may add more later!
+
 #### DataStructures
+
+The datastructures file `ComplexDataStructures.py` includes lesser used more specalized datastrutures. These include the following
+
+- [ ] Single Linked List
+
+- [ ] Double Linked List
+
+- [ ] Hashmap
+
+- [ ] Trees
+
+- [ ] BinaryTrees
+
+- [ ] Stack
+
+- [ ] Queue
+
+Most of these are written by me and a lot are being updated and refactored with better implementations more comments and improved documentation.
 
 ---
 
 ## [Day 1](https://adventofcode.com/2022/day/1)
 
+Day one so far was not too bad at all, got off to a bit of a slow start reading the question but in terms of actual implementation there wasn't too much to it. 
+
+I simply did the following: Add up all the calories, add them to a list, and return the max value.
+
+```python
+all_cals = [[1000, 2000, 3000], 
+            [4000], 
+            [5000, 6000], 
+            [7000, 8000, 9000], 
+            [10000]]
+
+cal_total = []
+for i in all_cals:
+    cal_total.append(sum(i))
+
+
+return max(cal_total)
+```
+
+For part two, I changed it slightly, simply popping the two value out of the list and refinding the max.
+
+```python
+all_cals = [[1000, 2000, 3000], 
+            [4000], 
+            [5000, 6000], 
+            [7000, 8000, 9000], 
+            [10000]]
+
+cal_total = []
+for i in all_cals:
+    cal_total.append(sum(i))
+
+sum_val = 0
+for i in range(3):
+    sum_val += max(cal_total)
+    cal_total.remove(max(cal_total))
+
+
+return sum_val
+```
+
+*Note, this is not my actual implementation and may not properly run; if you want to see that code it's in the repo*
+
 ---
 
 ## [Day 2](https://adventofcode.com/2022/day/2)
+
+---
+
+## [Day 3](https://adventofcode.com/2022/day/3)
+
+---
+
+## [Day 4](https://adventofcode.com/2022/day/4)
 
 ---

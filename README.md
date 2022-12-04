@@ -70,19 +70,19 @@ Many of the algorithms are being referenced from [here](https://codeofgeeks.com/
 
 The datastructures file `ComplexDataStructures.py` includes lesser used more specalized datastrutures. These include the following
 
-- [ ] Single Linked List
+- [x] Single Linked List
 
 - [ ] Double Linked List
 
-- [ ] Hashmap
+- [x] Hashmap
 
-- [ ] Trees
+- [x] Trees
 
 - [ ] BinaryTrees
 
-- [ ] Stack
+- [x] Stack
 
-- [ ] Queue
+- [x] Queue
 
 Most of these are written by me and a lot are being updated and refactored with better implementations more comments and improved documentation.
 

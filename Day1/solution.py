@@ -107,7 +107,7 @@ def optimized(input_vals, num_max=1):
     for i in range(num_max):
         max_vals = find_max(elf_cal)[1]
 
-        top_elds.append(max_vals[0])
+        top_elfs.append(max_vals[0])
         top_cals.append(max_vals[1])
 
         elf_cal.remove(elf_cal[1])
@@ -122,7 +122,7 @@ if __name__=="__main__":
     input_vals = inputProcess(f)
     
     if args.Part == 1:
-        output = part1(input_vals)
+        output = part1(input_vals)[1]
 
     elif args.Part == 2:
         output = part2(input_vals)

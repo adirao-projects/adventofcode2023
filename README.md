@@ -44,6 +44,12 @@ cd Day1
 python solution.py -t -p 1
 ```
 
+Alternatively, you can run everything from the parent directory by calling `main.py` and passing the `-d` argumentent following by an integer for day number. To run day 1 part 2 in test mode it would be the following:
+
+```bash
+python main.py -d 1 -p 2 -t 
+```
+
 ### Helper Files
 
 There are also a few helper files included with the starter code. This includes useful algorithms and datastructures that you might need (but might not have the time to write from scratch). If you need to change anything, it is advised that you overload the class in order to preserve the classes for later use on other days. All the files should be fully type annotated with information about any algorithms.

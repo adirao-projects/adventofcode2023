@@ -35,6 +35,26 @@ def openFile(test_mode=False):
 	
 	return f
 
+def testOutput(answer: int, test_value:int) -> bool:
+	"""
+	Parameters
+	----------
+	answer : int
+		The answer to be checked.
+
+	Returns
+	-------
+	bool
+		True if the answer is correct, False otherwise.
+
+	"""
+	if answer == test_value:
+		print(f'{answer} is correct!')
+		return True
+	else:
+		print(f'{test_value} expected, {answer} received.')
+		return False
+
 def inputProcess(f):
 	"""
 	Parameters
@@ -50,18 +70,18 @@ def inputProcess(f):
 	"""
 	input_vals = []
 	for line in f:
-		input_vals.append([int(x) for x in line.strip().split(' ')])
+		line = line.strip()
+		input_vals.append([x for x in line.split(' ')])
 
 	return input_vals
 
-
-def part1(input_vals):
+def part1(inputs):
 	raise NotImplementedError
 
-def part2(input_vals):
+def part2(inputs):
 	raise NotImplementedError    
 
-def optimized(input_vals):
+def optimized(inputs):
 	raise NotImplementedError
 
 if __name__=="__main__": 
@@ -76,8 +96,11 @@ if __name__=="__main__":
 		output = part2(input_vals)
 	
 	elif args.Part == 0:
-		 output = optimized(input_vals)
+		output = optimized(input_vals)
 	
+	TEST_VALUE = 0
+	testOutput(output, TEST_VALUE)
+
 	print(output)
  
 	

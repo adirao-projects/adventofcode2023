@@ -8,5 +8,6 @@ try:
 except Exception as e:
 	print('Failure')
 	print(e)
+	raise ValueError(e)
 print('press enter to close')
 input()

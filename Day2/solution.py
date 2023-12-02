@@ -1,4 +1,10 @@
 import argparse
+import sys
+
+sys.path.append('../')
+
+#import Algorithms
+#import ComplexDataStructures
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--Part", type=int, help = "Which Part", default=0)
@@ -9,118 +15,126 @@ import numpy as np
 from itertools import combinations 
 
 def openFile(test_mode=False):
-    """
-    Parameters
-    ----------
-    test_mode : Boolean
-        Specifies whether to use the test 
-        inputs or the full input.
+	"""
+	Parameters
+	----------
+	test_mode : Boolean
+		Specifies whether to use the test 
+		inputs or the full input.
 
-    Returns
-    -------
-    input_vals : list
-        Contains all inputs in a list format.
+	Returns
+	-------
+	input_vals : list
+		Contains all inputs in a list format.
 
-    """
-    if test_mode:
-        f = open('test_inputs.txt','r').readlines()
-    else:
-        f = open('inputs.txt','r').readlines()
-    
-    return f
+	"""
+	if test_mode:
+		f = open('test_inputs.txt','r').readlines()
+	else:
+		f = open('inputs.txt','r').readlines()
+	
+	return f
 
 def inputProcess(f):
-    """
-    Parameters
-    ----------
-    f : file
-        The file that is to be processed input input values
+	"""
+	Parameters
+	----------
+	f : file
+		The file that is to be processed input input values
 
-    Returns
-    -------
-    input_vals : list
-        Processed input values.
+	Returns
+	-------
+	input_vals : list
+		Processed input values.
 
-    """
-    input_vals = []
-    for line in f:
-        input_vals.append(line.strip().split(' '))
+	"""
+	input_vals = []
 
-    return input_vals
+	all_bag_dict = {}
+	for line in f:
+		line = line.strip()
+		id_, data =  line.split(': ')
+		id_ = id_.split(' ')[1]
+		data = data.split('; ')
+		bags = []
+		bag_dict = {'total': {
+						'red':0,
+						'blue':0,
+						'green':0
+					},}
+		for i, dat in enumerate(data):
+			i+=1
+			bag_dict[str(i)] = {
+				'red' : 0,
+				'blue' : 0,
+				'green' : 0,
+			}
+
+			bags.append(dat.split(', '))
+
+		for i, bag in enumerate(bags):
+			i+=1
+			for cube_type in bag:
+				cube_type = cube_type.split(' ')
+				bag_dict[str(i)][cube_type[1]] += int(cube_type[0])
+				bag_dict['total'][cube_type[1]] += int(cube_type[0])
+
+		
+		all_bag_dict[id_] = bag_dict
+
+	return all_bag_dict
 
 
-def part1(input_vals):
-    scores = {  "A": 1,
-                "B": 2,
-                "C": 3,
-                "X": 1, 
-                "Y": 2,
-                "Z": 3}
-    tot_score = 0
-    for opp, ply in input_vals:
-        tot_score += scores[ply]
-        if scores[opp]==scores[ply]:
-            tot_score += 3
+def part1(all_bag_dict):
+	init_cond = {
+		'red' : 12,
+		'green' : 13,
+		'blue': 14,
+	}
+	sum_id = 0
+	for id_ in all_bag_dict:
+		sum_id+=int(id_)
+		for i in range(1, len(all_bag_dict[id_])):
+			if all_bag_dict[id_][str(i)]['red'] > init_cond['red'] or \
+			all_bag_dict[id_][str(i)]['green'] > init_cond['green'] or \
+			all_bag_dict[id_][str(i)]['blue'] > init_cond['blue']:
+				sum_id -= int(id_)
+				break
 
-        elif scores[opp]==3 and scores[ply]==1:
-            tot_score += 6
+	return sum_id
 
-        elif scores[opp]==1 and scores[ply]==3:
-            tot_score += 0
+def part2(all_bag_dict):
+	cube_power_sum = 0
+	for id_ in all_bag_dict:
+		max_red = 0
+		max_green = 0
+		max_blue = 0
+		for i in range(1, len(all_bag_dict[id_])):
+			if max_red < all_bag_dict[id_][str(i)]['red']:
+				max_red = all_bag_dict[id_][str(i)]['red']
+			if max_green < all_bag_dict[id_][str(i)]['green']:
+				max_green = all_bag_dict[id_][str(i)]['green']
+			if max_blue < all_bag_dict[id_][str(i)]['blue']:
+				max_blue = all_bag_dict[id_][str(i)]['blue']
+		cube_power_sum += max_red * max_green * max_blue
 
-        elif scores[opp]>scores[ply]:
-            tot_score += 0
-
-        elif scores[opp]<scores[ply]:
-            tot_score += 6
-
-        
-
-
-    return tot_score
-
-def part2(input_vals):
-    score_opts = [1, 2, 3]
-    scores = {  "A": 1,
-                "B": 2,
-                "C": 3,
-            }
-    tot_score = 0
-    for opp, outcome in input_vals:
-        if outcome=="X":
-            desired = score_opts.index(scores[opp]) - 1
-            tot_score +=0
-            tot_score += score_opts[desired]
-
-        elif outcome=="Y":
-            desired = score_opts.index(scores[opp])
-            tot_score +=3
-            tot_score += score_opts[desired]
-
-        elif outcome=="Z":
-            desired = (score_opts.index(scores[opp]) + 1)%3
-            tot_score += 6
-            tot_score += score_opts[desired]
-
-    return tot_score
+	return cube_power_sum  
 
 def optimized(input_vals):
-    pass
+	raise NotImplementedError
 
 if __name__=="__main__": 
-    f = openFile(args.Test)  
+	f = openFile(args.Test)  
 
-    input_vals = inputProcess(f)
-    
-    if args.Part == 1:
-        output = part1(input_vals)
+	input_vals = inputProcess(f)
+	
+	if args.Part == 1:
+		output = part1(input_vals)
 
-    elif args.Part == 2:
-        output = part2(input_vals)
-    
-    elif args.Part == 0:
-  	     output = optimized(input_vals)
-    
-    print(output)
- 
-    
+	elif args.Part == 2:
+		output = part2(input_vals)
+	
+	elif args.Part == 0:
+		output = optimized(input_vals)
+
+	print(output)	

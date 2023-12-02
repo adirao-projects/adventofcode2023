@@ -1,4 +1,4 @@
-# [Advent of Code 2022](https://adventofcode.com/2022/)
+# [Advent of Code 2023](https://adventofcode.com/2023/)
 
 ---
 
@@ -6,11 +6,7 @@
 
 Hi there, my name is Adi. I like doing the Advent of Code every year and this year I want to document my progress and thoughts on each problem here on this git repo. I'm [@adiraowastaken on Twitter](https://twitter.com/adiraowastaken) and I should be posting there to. Edits are welcome (especially to the starter files), just create a pull request before you do anything.
 
-
-
 **IMPORTANT, there are solutions that are posted here so don't spoil yourself!**
-
-
 
 ----
 
@@ -94,7 +90,7 @@ Most of these are written by me and a lot are being updated and refactored with 
 
 ---
 
-## [Day 1](https://adventofcode.com/2022/day/1)
+## [Day 1](https://adventofcode.com/2023/day/1)
 
 Day one so far was not too bad at all, got off to a bit of a slow start reading the question but in terms of actual implementation there wasn't too much to it. 
 
@@ -138,17 +134,3 @@ return sum_val
 ```
 
 *Note, this is not my actual implementation and may not properly run; if you want to see that code it's in the repo*
-
----
-
-## [Day 2](https://adventofcode.com/2022/day/2)
-
----
-
-## [Day 3](https://adventofcode.com/2022/day/3)
-
----
-
-## [Day 4](https://adventofcode.com/2022/day/4)
-
----

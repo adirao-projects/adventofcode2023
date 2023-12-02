@@ -1,135 +1,126 @@
-import numpy as np
-from itertools import combinations
-
 import argparse
+import sys
+
+sys.path.append('../')
+
+#import Algorithms
+#import ComplexDataStructures
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--Part", type=int, help = "Which Part", default=0)
 parser.add_argument("-t", "--Test", action="store_true", help = "Uses test inputs")
 args = parser.parse_args()
 
+import numpy as np
+from itertools import combinations 
+
 def openFile(test_mode=False):
-    """
-    Parameters
-    ----------
-    test_mode : Boolean
-        Specifies whether to use the test 
-        inputs or the full input.
+	"""
+	Parameters
+	----------
+	test_mode : Boolean
+		Specifies whether to use the test 
+		inputs or the full input.
 
-    Returns
-    -------
-    input_vals : list
-        Contains all inputs in a list format.
+	Returns
+	-------
+	input_vals : list
+		Contains all inputs in a list format.
 
-    """
-    if test_mode:
-        f = open('test_inputs.txt','r').readlines()
-    else:
-        f = open('inputs.txt','r').readlines()
-    
-    return f
+	"""
+	if test_mode:
+		f = open('test_inputs.txt','r').readlines()
+	else:
+		f = open('inputs.txt','r').readlines()
+	
+	return f
 
 def inputProcess(f):
-    """
-    Parameters
-    ----------
-    f : file
-        The file that is to be processed input input values
+	"""
+	Parameters
+	----------
+	f : file
+		The file that is to be processed input input values
 
-    Returns
-    -------
-    input_vals : list
-        Processed input values.
+	Returns
+	-------
+	input_vals : list
+		Processed input values.
 
-    """
-    input_vals = []
-    inputs = []
-    for line in f:
-        try:
-            inputs.append([int(x) for x in line.strip().split(' ')][0])
-        except:
-            input_vals.append(inputs)
-            inputs = []
+	"""
+	input_vals = []
+	for line in f:
+		input_vals.append([x for x in line.strip().split(' ')])
 
-    return input_vals
+	return input_vals
 
 
 def part1(input_vals):
-    elf_cal = []
+	sum_calib_val = 0
+	for line in input_vals:
+		strip_line = [int(x) for x in list(line[0]) if x.isdigit()]
+		sum_calib_val += int(str(strip_line[0])+str(strip_line[-1]))
+		
 
-    for elf, elf_food in enumerate(input_vals):
-        elf_cal.append(sum(elf_food))
+	return sum_calib_val
 
-    elf_most = elf_cal.index(max(elf_cal))+1
-    elf_most_cal = max(elf_cal)
-
-    return elf_most, elf_most_cal
-
-def find_max(lst):
-
-    elf_most = lst.index(max(lst))+1
-    elf_most_cal = max(lst)
-
-    return elf_most, elf_most_cal
 
 def part2(input_vals):
-    top_three_elf = []
-    top_three_cal = []
-    elf_cal = []
+	def first_digit_crawler(line):
+		word=''
+		for char in line:
+			if char.isdigit():
+				return str(char)
+			else:
+				word+=char
+				for num in numbers:
+					if num in word:
+						return str(numbers[num])
 
-    for elf, elf_food in enumerate(input_vals):
-        elf_cal.append(sum(elf_food))
+	def last_digit_crawler(line):
+		word=''
+		for char in line[::-1]:
+			if char.isdigit():
+				return str(char)
+			else:
+				word=char+word
+				for num in numbers:
+					if num in word:
+						return str(numbers[num])
 
-    elf1, cal1 = find_max(elf_cal)
-    elf_cal.remove(cal1)
+	numbers = {'one' : 1, 'two' : 2, 
+			'three' : 3, 'four' : 4, 
+			'five' : 5, 'six' : 6,
+			'seven' : 7, 'eight' : 8,
+			'nine' : 9, 'zero' : 0} 
 
-    elf2, cal2 = find_max(elf_cal)
-    elf_cal.remove(cal2)
+	sum_calib_val = 0
+	for line in input_vals:
+		new_line = line[0]
+		first = first_digit_crawler(new_line)
+		last = last_digit_crawler(new_line)
 
-    elf3, cal3 = find_max(elf_cal)
-    elf_cal.remove(cal3)
+		sum_calib_val += int(first + last)
 
-    elf_most = elf_cal.index(max(elf_cal))+1
-    elf_most_cal = max(elf_cal)
+	return sum_calib_val
 
-    output = cal1+cal2+cal3
-
-    return output
-
-def optimized(input_vals, num_max=1):
-    top_elfs = []
-    top_cals = []
-    elf_cal = []
-
-    for elf, elf_food in enumerate(input_vals):
-        elf_cal.append(sum(elf_food))
-
-    for i in range(num_max):
-        max_vals = find_max(elf_cal)[1]
-
-        top_elfs.append(max_vals[0])
-        top_cals.append(max_vals[1])
-
-        elf_cal.remove(elf_cal[1])
-
-    output = sum(top_cals)
-    
-    return output
+def optimized(input_vals):
+	raise NotImplementedError
 
 if __name__=="__main__": 
-    f = openFile(args.Test)  
+	f = openFile(args.Test)  
 
-    input_vals = inputProcess(f)
-    
-    if args.Part == 1:
-        output = part1(input_vals)[1]
+	input_vals = inputProcess(f)
+	
+	if args.Part == 1:
+		output = part1(input_vals)
 
-    elif args.Part == 2:
-        output = part2(input_vals)
-    
-    elif args.Part == 0:
-         output = optimized(input_vals)
-    
-    print(output)
+	elif args.Part == 2:
+		output = part2(input_vals)
+	
+	elif args.Part == 0:
+		output = optimized(input_vals)
+	
+	print(output)
  
-    
+	
